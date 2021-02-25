@@ -1,5 +1,5 @@
-# Project Proposal MIS 3640:
-## Will Appleton, Kristina Ferguson, Alexander Rosemand
+# Project Proposal MIS3640:
+## Will Appleton, Kristina Ferguson, Alexander Rosemond
 
 1. **The Big Idea:**
     The idea for our project is to consolidate information regarding a students academic plan, specifically for Babson students. This would entail compiling information regarding concentration requirement, course offering for each semester, what course level it is, what requirements they have left to fill, and so on. Currently, this information is spread across numerous web pages and the process of choosing classes for each semester is a stressful, time-intensive process and we would like to create a tool that would aid in alleviating some of these issues. The software design that we would create throughout the duration of the project would be an interactive platform for students to input the type of information they want and the program would return this information to them. 
