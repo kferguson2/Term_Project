@@ -42,11 +42,6 @@ def parse_html(html):
     course_list = []
     for course_row in course_table.find_all('tr')[4:]: # for some reason first 4 lines were none or <td> Course No.
         course_num = course_row.find('td', attrs={'width': 85}).string
-        # print(course_num)
-        # course_code = course_num[0].strip()
-        # # print(course_code)
-        # section_num = course_num[1].strip()
-        # print(section_num)
         course_title = course_row.find('td', attrs={'width': 250}).string.strip()
         course_day_time = course_row.find('td', attrs={'width': 140}).get_text().split(' ', 1)
         # print(course_day_time)
