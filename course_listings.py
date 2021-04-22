@@ -26,14 +26,9 @@ def download_page(url):
 
 def parse_html(html):
     """
-    Currently returning a tuple of course no. and title
-    Getting repeats of classes becasue its every section of that class like: 
-    (ACC1000-01,INTRODUCTION TO FINANCIAL ACCOUNTING
-    ACC1000-02,INTRODUCTION TO FINANCIAL ACCOUNTING)
-    Do we want to include day/times and instructors or figure out way to elimate the duplicates?
+    Parses an html for Babson course listings and returns a list of courses offered that semester
 
-    Also for some of the courses when it converted to a csv it added "" around the title not sure why 
-    because it doesn't have the quotations when you print(course_title)
+    Information for each course includes: the course number, course title, days/time course is offered, and the professor teaching the course.
     """
     soup = BeautifulSoup(html, features="html.parser")
     # print(soup.prettify())
@@ -49,9 +44,10 @@ def parse_html(html):
         # print(prof)
         course_nodes = course_row.findChildren('td')
         # print(course_nodes)
-        professor = course_nodes[4].string
-        if professor != None:
-            professor = professor.strip()
+        children = course_nodes[4].get_text().strip()
+        contains_digit = any(map(str.isdigit, children))
+        if contains_digit == False:
+            professor = children
         # print(professor)
         if len(course_day_time) == 2:
             course_day = course_day_time[0].strip()
