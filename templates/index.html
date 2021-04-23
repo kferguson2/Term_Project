@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Babson Course Finder</title>
+</head>
+<body>
+<h1>Hello! We are here to help you find the courses you can take!</h1>
+<form method="post" name='information'> 
+    <label for="program">Program:</label><br>
+    <select name="program" id="program">
+        <option value="">- Please Select -</option>
+        <option value="Undergraduate">Undergraduate</option>
+        <option value="Graduate">Graduate</option>
+    </select><br>
+    <label for="term">Semester:</label><br>
+    <select name="term" id="term">
+        <option value="">- Please Select -</option>
+        <option value="Fall">Fall</option>
+        <option value="Spring">Spring</option>
+        <option value="Winter">Winter</option>
+        <option value="Summer">Summer</option>
+    </select><br>
+    <label for="year">Year:</label><br>
+    <input type="number" name="year" min="2020" step="1" value="2021"><br>
+    <label for="concentration">Concentration:</label><br>
+    <select name="concentration" id="concentration">
+        <option value="">- Please Select -</option>
+        <option value="Accounting">Accounting</option>
+        <option value="Business Analytics">Business Analytics</option>
+        <option value="Computational and Mathematical Finance">Computational and Mathematical Finance</option>
+        <option value="Economics">Economics</option>
+        <option value="Entrepreneurship">Entrepreneurship</option>
+        <option value="Environmental Sustainability">Environmental Sustainability</option>
+        <option value="Finance">Finance</option>
+        <option value="Global Business Management">Global Business Management</option>
+        <option value="Global and Regional Studies">Global and Regional Studies</option>
+        <option value="Historical and Political Studies">Historical and Political Studies</option>
+        <option value="Identity and Diversity">Identity and Diversity</option>
+        <option value="Information Technology Management">Information Technology Management</option>
+        <option value="International Business Environment">International Business Environment</option>
+        <option value="Justice, Citizenship, and Social Responsibility">Justice, Citizenship, and Social Responsibility</option>
+        <option value="Leadership">Leadership</option>
+        <option value="Legal Studies">Legal Studies</option>
+        <option value="Literary and Visual Arts">Literary and Visual Arts</option>
+        <option value="Managerial Financial Planning and Analysis">Managerial Financial Planning and Analysis</option>
+        <option value="Operations Management">Operations Management</option>
+        <option value="Quantitative Methods">Quantitative Methods</option>
+        <option value="Real Estate">Real Estate</option>
+        <option value="Retail Supply Chain Management">Retail Supply Chain Management</option>
+        <option value="Social and Cultural Studies">Social and Cultural Studies</option>
+        <option value="Statistical Modeling">Statistical Modeling</option>
+        <option value="Strategic Management">Strategic Management</option>
+        <option value="Technology, Entrepreneurship, and Design">Technology, Entrepreneurship, and Design</option>
+    </select>
+</form>
+    <p><input type="submit" value="Find courses"></p>
+</form>
+</body>
+</html>

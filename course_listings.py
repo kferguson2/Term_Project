@@ -36,7 +36,7 @@ def parse_html(html):
     # print(course_table)
     course_list = []
     for course_row in course_table.find_all('tr')[4:]: # for some reason first 4 lines were none or <td> Course No.
-        course_num = course_row.find('td', attrs={'width': 85}).string
+        course_code = course_row.find('td', attrs={'width': 85}).string
         course_title = course_row.find('td', attrs={'width': 250}).string.strip()
         course_day_time = course_row.find('td', attrs={'width': 140}).get_text().split(' ', 1)
         # print(course_day_time)
@@ -64,7 +64,7 @@ def parse_html(html):
 
 
 def main():
-    url = generate_url('Undergraduate','Fall', 2021)
+    # url = generate_url('Undergraduate','Fall', 2021)
 
     with open('data/course_listings.csv', 'w', encoding='utf-8', newline='') as f:
         writer = csv.writer(f)
