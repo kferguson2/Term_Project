@@ -68,7 +68,10 @@ def main():
     concentrations_list = parse_html_concentration_list(download_page(DOWNLOAD_URL))
     # pprint.pprint(concentrations_list)
     # print(concentrations_list[2])
-    pprint.pprint(parse_html(concentrations_list,download_page(url)))
+
+url = DOWNLOAD_URL
+concentrations_list = parse_html_concentration_list(download_page(DOWNLOAD_URL))
+concentrations_dict = (parse_html(concentrations_list,download_page(url)))
 
 
 if __name__ == '__main__':
