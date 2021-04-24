@@ -1,6 +1,9 @@
+from concentration import concentrations_dict
 import csv
 import urllib.request
 from bs4 import BeautifulSoup
+
+# concentrations_dict
 
 def generate_url(program, term, year):
     """ 
@@ -57,6 +60,44 @@ def parse_html(html):
         if [course_num, course_title, course_day, course_time] not in course_list:
             course_list.append([course_num, course_title, course_day, course_time, professor])
     return course_list
+
+
+# def student_course_list(concentration):
+#     clst = open('data/course_listings.csv')
+#     schedule = [] 
+#     for courses in concentrations_dict[concentration]:
+#         for course_available in clst:
+#             # print(course_available)
+#             try:
+#                 course_number, other_info = course_available.split(',', 1)
+#                 course_number_clean, section = course_number.split('-')
+#                 # print(course_number)
+#                 if course_number in courses:
+#                     schedule.append(course_available)
+#             except:
+#                 pass
+           
+#     return schedule
+
+
+
+def student_course_list(concentration):
+    clst = open('data/course_listings.csv')
+    schedule = [] 
+    for course_available in clst:
+        try:
+            course_number, other_info = course_available.split(',', 1)
+            course_number_clean, section = course_number.split('-')
+            # print(course_number)
+            if course_number_clean in concentrations_dict[concentration]:
+                    schedule.append(course_available)
+        except:
+            pass
+    return schedule
+
+print(student_course_list("Accounting"))
+
+
 
 
 
