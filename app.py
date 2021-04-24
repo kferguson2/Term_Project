@@ -1,21 +1,35 @@
-from flask import Flask, render_template, request
-import course_listings
+from flask import Flask, render_template, request, jsonify
+from course_listings import *
 app = Flask(__name__)
+global babson_url
+babson_url = 'https://fusionmx.babson.edu/CourseListing/?blnShowHeader=true'
 
 @app.route("/", methods=["GET", "POST"])
 def course_list():
     if request.method == "POST":
-        program = str(request.form['program'])
-        term = str(request.form['term'])
-        year = int(request.form['year'])
-        concentration = str(request.form['concentration'])
-        url = generate_url(program, term, year)
-        if course_list:
-            return render_template('result.html', 
-                course_list=course_list)
-    else:
-        return render_template('index.html')
-    return render_template('index_html')
+        try:
+            program = str(request.form['program'])
+            term = str(request.form['term'])
+            year = int(request.form['year'])
+            concentration = str(request.form['concentration'])
+            url = generate_url(program, term, year)
+            course_listings = parse_html(download_page(url).read())
+            schedule = student_course_list(concentration)
+            if schedule:
+                return render_template('result.html', 
+                                        program=program,
+                                        term=term,
+                                        year=year,
+                                        concentration=concentration,
+                                        schedule=schedule)
+            else:
+                return render_template('index.html', error=True)
+        except:
+            return render_template('error.html', babson_url=babson_url)
+    return render_template('index.html', error=None)
+
+
+
 
 
 if __name__ == "__main__":

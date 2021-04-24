@@ -11,9 +11,6 @@ def generate_url(program, term, year):
     program (string): Undergraduate or Graduate
     term (string): Fall, Spring, Winter, or Summer
     year (int): Year that the term is in
-
-    # add in section to make first letters upper
-    # add in some raise exception error messages when inputting wrong
     """
     url = f'https://fusionmx.babson.edu/CourseListing/index.cfm?fuseaction=CourseListing.DisplayCourseListing&blnShowHeader=true&program={program}&semester={term}+{year}&sort_by=course_number&btnSubmit=Display+Courses'
     return url
@@ -57,8 +54,8 @@ def parse_html(html):
             course_time = course_day_time[1].strip()
         else:
             course_day = course_day_time[0].strip()
-        if [course_num, course_title, course_day, course_time] not in course_list:
-            course_list.append([course_num, course_title, course_day, course_time, professor])
+        if [course_code, course_title, course_day, course_time] not in course_list:
+            course_list.append([course_code, course_title, course_day, course_time, professor])
     return course_list
 
 
@@ -90,13 +87,12 @@ def student_course_list(concentration):
             course_number_clean, section = course_number.split('-')
             # print(course_number)
             if course_number_clean in concentrations_dict[concentration]:
-                    schedule.append(course_available)
+                    schedule.append(course_available.strip())
         except:
             pass
     return schedule
 
-print(student_course_list("Accounting"))
-
+# print(student_course_list("Accounting"))
 
 
 
@@ -105,7 +101,7 @@ print(student_course_list("Accounting"))
 
 
 def main():
-    # url = generate_url('Undergraduate','Fall', 2021)
+    url = generate_url('Undergraduate','Fall', 2021)
 
     with open('data/course_listings.csv', 'w', encoding='utf-8', newline='') as f:
         writer = csv.writer(f)

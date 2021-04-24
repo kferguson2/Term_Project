@@ -3,11 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Course List</title>
+    <title>Available Courses</title>
   </head>
+
   <body>
-    <h1>{{ course_list }}</h1>
+    <h1>Results</h1>
+    <p>
+        <b>The courses that are available for {{program}}'s during {{term}} of {{year}} concentrating in {{concentration}} are:</b>
+    </p>
+    <p>
+        {% for class in schedule %}
+            <p>{{ class }} </p>
+        {% endfor %}
+    </p>
   </body>
-
-
 </html>

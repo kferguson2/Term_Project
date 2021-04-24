@@ -6,7 +6,11 @@
 </head>
 <body>
 <h1>Hello! We are here to help you find the courses you can take!</h1>
-<form method="post" name='information'> 
+<form method="POST" name='information'>
+    {% if error %} 
+    <p style="color:red">Error: All of the information below is required. Please select an answer for every section.</p>
+    {% endif %}
+    <p> Please enter the following information:</p>
     <label for="program">Program:</label><br>
     <select name="program" id="program">
         <option value="">- Please Select -</option>
@@ -53,8 +57,10 @@
         <option value="Strategic Management">Strategic Management</option>
         <option value="Technology, Entrepreneurship, and Design">Technology, Entrepreneurship, and Design</option>
     </select>
-</form>
-    <p><input type="submit" value="Find courses"></p>
+    <p>
+        <input type="submit" value="Find Courses" />
+    </p>
 </form>
 </body>
 </html>
+
