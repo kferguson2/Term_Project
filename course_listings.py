@@ -91,8 +91,8 @@ def student_course_list(concentration, course_list):
 
     return schedule
 
-course_list = parse_html(download_page(generate_url('Undergraduate','Fall', 2021)))
-pprint.pprint(student_course_list("Accounting", course_list))
+# course_list = parse_html(download_page(generate_url('Undergraduate','Fall', 2021)))
+# pprint.pprint(student_course_list("Accounting", course_list))
 
 
 
@@ -100,19 +100,19 @@ pprint.pprint(student_course_list("Accounting", course_list))
 # parse_html(download_page(url).read())
 
 
-def main():
-    url = generate_url('Undergraduate','Fall', 2021)
+# def main():
+#     url = generate_url('Undergraduate','Fall', 2021)
 
-    # with open('data/course_listings.csv', 'w', encoding='utf-8', newline='') as f:
-        # writer = csv.writer(f)
+#     # with open('data/course_listings.csv', 'w', encoding='utf-8', newline='') as f:
+#         # writer = csv.writer(f)
 
-        # fields = ('Course No.', 'Title', 'Day(s)', 'Time', 'Professor')
-        # writer.writerow(fields)
+#         # fields = ('Course No.', 'Title', 'Day(s)', 'Time', 'Professor')
+#         # writer.writerow(fields)
 
-        # html = download_page(url)
-        # courses = parse_html(html)
-        # writer.writerows(courses)
+#         # html = download_page(url)
+#         # courses = parse_html(html)
+#         # writer.writerows(courses)
 
 
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+#     main()
