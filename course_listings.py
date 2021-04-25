@@ -2,6 +2,7 @@ from concentration import concentrations_dict
 import csv
 import urllib.request
 from bs4 import BeautifulSoup
+import pprint
 
 # concentrations_dict
 
@@ -56,30 +57,25 @@ def parse_html(html):
             course_day = course_day_time[0].strip()
         if [course_code, course_title, course_day, course_time] not in course_list:
             course_list.append([course_code, course_title, course_day, course_time, professor])
+    temporary_course_list = []
+    copy_course_list = course_list.copy()
+    for course in copy_course_list:
+        course_number = course[0]
+        temporary_course_list.append(course_number)
+        if temporary_course_list.count(course_number) > 1:
+            index_number = temporary_course_list.index(course_number)
+            temporary_course_list.pop(index_number)
+            course_list.pop(index_number)
+
     return course_list
 
 
-# def student_course_list(concentration):
-#     clst = open('data/course_listings.csv')
-#     schedule = [] 
-#     for courses in concentrations_dict[concentration]:
-#         for course_available in clst:
-#             # print(course_available)
-#             try:
-#                 course_number, other_info = course_available.split(',', 1)
-#                 course_number_clean, section = course_number.split('-')
-#                 # print(course_number)
-#                 if course_number in courses:
-#                     schedule.append(course_available)
-#             except:
-#                 pass
-           
-#     return schedule
-
+# print(parse_html(download_page(generate_url('Undergraduate','Fall', 2021))))
 
 
 def student_course_list(concentration):
     clst = open('data/course_listings.csv')
+    temporary_schedule = []
     schedule = [] 
     for course_available in clst:
         try:
@@ -87,12 +83,15 @@ def student_course_list(concentration):
             course_number_clean, section = course_number.split('-')
             # print(course_number)
             if course_number_clean in concentrations_dict[concentration]:
+                temporary_schedule.append(course_number)
+                if temporary_schedule.count(course_number) < 2:
                     schedule.append(course_available.strip())
         except:
             pass
+
     return schedule
 
-# print(student_course_list("Accounting"))
+# pprint.pprint(student_course_list("Accounting"))
 
 
 
