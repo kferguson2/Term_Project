@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-from course_listings import *
+from course_listings import parse_html, generate_url, download_page, student_course_list
 app = Flask(__name__)
 global babson_url
 babson_url = 'https://fusionmx.babson.edu/CourseListing/?blnShowHeader=true'
@@ -18,7 +18,7 @@ def course_list():
             concentration = str(request.form['concentration'])
             url = generate_url(program, term, year)
             course_listings = parse_html(download_page(url).read())
-            schedule = student_course_list(concentration)
+            schedule = student_course_list(concentration, course_listings)
             if schedule:
                 return render_template('result.html', 
                                         program=program,
