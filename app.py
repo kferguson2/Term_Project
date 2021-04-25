@@ -4,7 +4,11 @@ app = Flask(__name__)
 global babson_url
 babson_url = 'https://fusionmx.babson.edu/CourseListing/?blnShowHeader=true'
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/")
+def home_page():
+    return render_template('homepage.html')
+
+@app.route("/coursefinder", methods=["GET", "POST"])
 def course_list():
     if request.method == "POST":
         try:
@@ -23,10 +27,10 @@ def course_list():
                                         concentration=concentration,
                                         schedule=schedule)
             else:
-                return render_template('index.html', error=True)
+                return render_template('course_finder.html', error=True)
         except:
             return render_template('error.html', babson_url=babson_url)
-    return render_template('index.html', error=None)
+    return render_template('course_finder.html', error=None)
 
 
 
