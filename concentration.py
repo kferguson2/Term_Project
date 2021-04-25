@@ -1,5 +1,6 @@
 import csv
 import urllib.request
+import pprint
 from bs4 import BeautifulSoup
 global DOWNLOAD_URL 
 DOWNLOAD_URL = 'https://www.babson.edu/academics/undergraduate-school/concentrations/'
@@ -72,6 +73,73 @@ def main():
 url = DOWNLOAD_URL
 concentrations_list = parse_html_concentration_list(download_page(DOWNLOAD_URL))
 concentrations_dict = (parse_html(concentrations_list,download_page(url)))
+extra_ba = ['QTM2000', 'MKT4530', 'OIM3525', 'OIM3535', 'MOB3536', 'OIM3580', 'OIM3640']
+concentrations_dict['Business Analytics'].extend(extra_ba)
+extra_cmf = ['QTM3625']
+concentrations_dict['Computational and Mathematical Finance'].extend(extra_cmf)
+concentrations_dict['Computational and Mathematical Finance'].remove('ECN3620')
+concentrations_dict['Computational and Mathematical Finance'].remove('QTM3612')
+econ = concentrations_dict['Economics'][:15]
+# print(econ)
+concentrations_dict['Economics'] = econ
+
+extra_entre = ['EPS3502', 'EPS3503', 'EPS3508', 'EPS420', 'EPS3509', 'EPS3531', 'EPS4530', 'EPS4534']
+concentrations_dict['Entrepreneurship'].extend(extra_entre)
+
+index_env = concentrations_dict['Environmental Sustainability'].index('SUS4600')
+concentrations_dict['Environmental Sustainability'][:index_env]
+extra_env = ['NST2080', 'HSS2080', 'NST2090', 'HSS2090', 'NST2011', 'ECN2611', 'CVA2013', 'SUS2600', 'SCN3630']
+concentrations_dict['Environmental Sustainability'].extend(extra_env)
+
+extra_fin = ['FIN4520', 'FIN4521']
+concentrations_dict['Finance'].extend(extra_fin)
+
+extra_id = ['HUM4600', 'LIT4682']
+concentrations_dict['Identity and Diversity'].extend(extra_id)
+
+concentrations_dict['Information Technology Management'] = ['OIM3640', 'OIM3690', 'OIM3505', 'OIM3525', 'OIM3555', 'OIM3560', 'OIM3605', 'OIM3610', 'OIM3615', 'OIM3565', 'OIM3580', 'OIM2645', 'OIM3525', 'OIM3545', 'MKT3515', 'MKT4530', 'QTM2601', 'OIM3620', 'OIM3635', 'OIM3645', 'OIM3655', 'QTM3674']
+
+concentrations_dict['International Business Environment'].pop(-1)
+
+concentrations_dict['Justice, Citizenship, and Social Responsibility'].append('CVA2010')
+
+extra_lead = ['MOB3514', 'MOB3515']
+concentrations_dict['Leadership'].extend(extra_lead)
+
+concentrations_dict['Legal Studies'].append('LAW3605')
+
+extra_lit = ['VSA4610', 'LVA2067']
+concentrations_dict['Literary and Visual Arts'].extend(extra_lit)
+
+index_man = concentrations_dict['Managerial Financial Planning and Analysis'].index('ACC4530')
+concentrations_dict['Managerial Financial Planning and Analysis'] = concentrations_dict['Managerial Financial Planning and Analysis'][:index_man]
+
+concentrations_dict['Marketing'] = ['MKT4505', 'MKT3510', 'MKT4506', 'MKT4530','MKT3500', 'MKT3501', 'MKT3515', 'MKT3540', 'MKT3550', 'MKT3574', 'MKT3575', 'EPS3580', 'MKT4510', 'MKT4515', 'MKT4520', 'MKT4560']
+
+extra_op = ['OIM3573', 'OIM3509', 'OIM3517', 'OIM3519', 'MOB3536', 'MIS3535', 'DES3600']
+concentrations_dict['Operations Management'].extend(extra_op)
+
+extra_qtm = ['QTM2600', 'QTM3620']
+concentrations_dict['Quantitative Methods'].extend(extra_qtm)
+
+concentrations_dict['Real Estate'] = ['FIN3511', 'FIN3512', 'FIN3555', 'FIN3565', 'FIN4571']
+
+index_rscm= concentrations_dict['Retail Supply Chain Management'].index('EPS3525')
+concentrations_dict['Retail Supply Chain Management'] = concentrations_dict['Retail Supply Chain Management'][:index_rscm]
+concentrations_dict['Retail Supply Chain Management'].append('OIM3573')
+
+index_stat = concentrations_dict['Statistical Modeling'].index('QTM2600')
+concentrations_dict['Statistical Modeling'] = concentrations_dict['Statistical Modeling'][:index_stat]
+
+extra_strat = ['M0B3540', 'MOB3545', 'MOB3546', 'MOB3555', 'MOB3514']
+concentrations_dict['Strategic Management'].extend(extra_strat)
+
+extra_ted = ['EPS3501', 'EPS3503', 'EPS3504', 'EPS3513', 'EPS3531', 'EPS3537', 'EPS3541', 'EPS4515', 'EPS4523', 'OIM3635']
+concentrations_dict['Technology, Entrepreneurship, and Design'].extend(extra_ted)
+
+# pprint.pprint(concentrations_dict['Technology, Entrepreneurship, and Design'])
+#identity and diversity
+
 
 
 if __name__ == '__main__':
