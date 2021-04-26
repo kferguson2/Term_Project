@@ -17,14 +17,14 @@
     <h1 style="font-family:'Arial';">Here are your results!</h1>
     </div>
     <p>
-        <b style="font-family:'Arial';">The {{course_level} courses being offered for {{program}}'s during {{term}} of {{year}} are:</b>
+        <b style="font-family:'Arial';">The {{course_level}} courses being offered for {{program}}'s during {{term}} of {{year}} are:</b>
     </p>
     <br>
     <p>
       <u><b style="font-family:'Arial';">[Course No., Course Title, Day(s), Time, Professor]</b></u>
     </p>
     <p style="font-family:'Arial';">
-        {% for class in electives_courses %}
+        {% for class in electives_available %}
             <p>{{ class }} </p>
         {% endfor %}
     </p>

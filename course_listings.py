@@ -157,7 +157,7 @@ def course_level_list(course_level, course_list):
 def main():
 
     url = generate_url('Undergraduate','Fall', 2021)
-
+    
     html = download_page(url).read()
     # print(html)
 
