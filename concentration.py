@@ -1,25 +1,26 @@
-import csv
 import urllib.request
-import pprint
 from bs4 import BeautifulSoup
 global DOWNLOAD_URL 
 DOWNLOAD_URL = 'https://www.babson.edu/academics/undergraduate-school/concentrations/'
 
 
+
 def download_page(url):
+    """ Downloads page url """
     return urllib.request.urlopen(url)
 
 
-# print(download_page(DOWNLOAD_URL).read())'
+
 def parse_html_concentration_list(html):
+    """
+    Parses an html for Babson concentrations and returns a list of concentrations offered
+    """
     soup = BeautifulSoup(html, features="html.parser")
     # print(soup.prettify())
     concentration_table = soup.find('ul', attrs={'class':'multilevel-linkul-1'})
     # print(concentration_table)
     concentrations_list = []
-    # print(concentration_table)
     for concentration_row in concentration_table.find_all('li'):
-        # print(concentration_row)
         try:
             concentration_detail = concentration_row
             concentrations_list.append(concentration_detail.string)
@@ -27,9 +28,13 @@ def parse_html_concentration_list(html):
             pass
     return concentrations_list
 
-# print(type("a"))
+
+
 def parse_html(concentrations_list, html):
-    global DOWNLOAD_URL
+    """
+    Parses an html for Babson concentrations
+    Returns a dictonary with the concentration courses for each concentration in the concentrations_list
+    """
     concentrations_dict = dict()
     for i in concentrations_list:
         # print(i)
@@ -53,7 +58,6 @@ def parse_html(concentrations_list, html):
                 if len(course_number)==7:
                     if course_number not in req_course_list:
                         req_course_list.append(course_number)
-            
             except:
                 pass
             concentrations_dict[i] = req_course_list
@@ -61,14 +65,20 @@ def parse_html(concentrations_list, html):
 
 
 
+
 def main():
     import pprint
+
     url = DOWNLOAD_URL
-    # print(url)
-    # print(parse_html(download_page(url)))
-    concentrations_list = parse_html_concentration_list(download_page(DOWNLOAD_URL))
+
+    html = download_page(url).read()
+   
+    concentrations_list = parse_html_concentration_list(html)
     # pprint.pprint(concentrations_list)
-    # print(concentrations_list[2])
+
+    concentrations_dict = parse_html(concentrations_list, html)
+    # pprint.pprint(concentrations_dict)
+    
 
 url = DOWNLOAD_URL
 concentrations_list = parse_html_concentration_list(download_page(DOWNLOAD_URL))

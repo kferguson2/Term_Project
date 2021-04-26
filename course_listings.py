@@ -154,24 +154,24 @@ def course_level_list(course_level, course_list):
 
 
 
-# def main():
+def main():
 
-#     url = generate_url('Undergraduate','Fall', 2021)
+    url = generate_url('Undergraduate','Fall', 2021)
+    
+    html = download_page(url).read()
+    # print(html)
 
-    # html = download_page(url).read()
-#     # print(html)
+    course_list = parse_html(html)
+    # print(course_list)
 
-    # course_list = parse_html(html)
-#     # print(course_list)
-
-    # concentration_courses = concentration_course_list("Accounting", course_list)
+    concentration_courses = concentration_course_list("Accounting", course_list)
     # pprint.pprint(concentration_courses)
 
-    # available_courses = course_type_list("HSS", course_list)
+    available_courses = course_type_list("HSS", course_list)
     # pprint.pprint(available_courses)
 
-    # electives_available = course_level_list("Free Electives", course_list)
+    electives_available = course_level_list("Free Electives", course_list)
     # pprint.pprint(electives_available)
 
-# if __name__ == '__main__':
-#     main()
+if __name__ == '__main__':
+    main()
