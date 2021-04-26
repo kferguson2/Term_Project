@@ -17,8 +17,12 @@
     <p>
         <b style="font-family:'Arial';">The courses being offered for {{program}}'s during {{term}} of {{year}} concentrating in {{concentration}} are:</b>
     </p>
+    <br>
+    <p>
+      <u><b style="font-family:'Arial';">[Course No., Course Title, Day(s), Time, Professor]</b></u>
+    </p>
     <p style="font-family:'Arial';">
-        {% for class in schedule %}
+        {% for class in concentration_courses %}
             <p>{{ class }} </p>
         {% endfor %}
     </p>

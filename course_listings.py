@@ -1,28 +1,25 @@
 from concentration import concentrations_dict
-import csv
 import urllib.request
 from bs4 import BeautifulSoup
 import pprint
 
-# concentrations_dict
 
 def generate_url(program, term, year):
     """ 
     Generates a url based on parameters
-    program (string): Undergraduate or Graduate
-    term (string): Fall, Spring, Winter, or Summer
+    program (str): Undergraduate or Graduate
+    term (str): Fall, Spring, Winter, or Summer
     year (int): Year that the term is in
     """
     url = f'https://fusionmx.babson.edu/CourseListing/index.cfm?fuseaction=CourseListing.DisplayCourseListing&blnShowHeader=true&program={program}&semester={term}+{year}&sort_by=course_number&btnSubmit=Display+Courses'
     return url
 
-# url = generate_url('Undergraduate','Fall', 2021)
+
 
 def download_page(url):
+    """ Dowloads page url """
     return urllib.request.urlopen(url)
 
-
-# print(download_page(url).read())
 
 
 def parse_html(html):
@@ -36,20 +33,16 @@ def parse_html(html):
     course_table = soup.find_all('table')[1]
     # print(course_table)
     course_list = []
-    for course_row in course_table.find_all('tr')[4:]: # for some reason first 4 lines were none or <td> Course No.
+    for course_row in course_table.find_all('tr')[4:]: # First 4 lines of table were None or row titles (such as Course No.)
         course_code = course_row.find('td', attrs={'width': 85}).string
         course_title = course_row.find('td', attrs={'width': 250}).string.strip()
         course_day_time = course_row.find('td', attrs={'width': 140}).get_text().split(' ', 1)
-        # print(course_day_time)
         prof = course_row.find('td', attrs={'width': 140})
-        # print(prof)
         course_nodes = course_row.findChildren('td')
-        # print(course_nodes)
         children = course_nodes[4].get_text().strip()
         contains_digit = any(map(str.isdigit, children))
         if contains_digit == False:
             professor = children
-        # print(professor)
         if len(course_day_time) == 2:
             course_day = course_day_time[0].strip()
             course_time = course_day_time[1].strip()
@@ -70,49 +63,115 @@ def parse_html(html):
     return course_list
 
 
-# print(parse_html(download_page(generate_url('Undergraduate','Fall', 2021))))
 
+def concentration_course_list(concentration, course_list):
+    """
+    Take a list of all courses being offered and the desired concentration
+    Returns a list of courses being offered the fulfill the concentration requirements
 
-def student_course_list(concentration, course_list):
-    clst = open('data/course_listings.csv')
-    temporary_schedule = []
-    schedule = [] 
-    for course_available in clst:
+    concentration (str): student's concentration (eg. Accounting)
+    course_list: list of all available courses
+    """
+    concentration_courses = [] 
+    for course_available in course_list:
         try:
-            course_number, other_info = course_available.split(',', 1)
-            course_number_clean, section = course_number.split('-')
-            # print(course_number)
-            if course_number_clean in concentrations_dict[concentration]:
-                temporary_schedule.append(course_number)
-                if temporary_schedule.count(course_number) < 2:
-                    schedule.append(course_available.strip())
+            course_code = course_available[0]
+            course_number, section_number = course_code.split('-')
+            if course_number in concentrations_dict[concentration]:
+                concentration_courses.append(course_available)
         except:
             pass
 
-    return schedule
-
-# course_list = parse_html(download_page(generate_url('Undergraduate','Fall', 2021)))
-# pprint.pprint(student_course_list("Accounting", course_list))
+    return concentration_courses
 
 
 
+def course_type_list(course_type, course_list):
+    """ 
+    Take a list of all courses being offered and the desired course type
+    Returns a list of courses all available courses that are the designated course type
 
-# parse_html(download_page(url).read())
+    course_type (str): Eg. LVA, CVA, HSS
+    course_list: list of all available courses
+    """
+    available_courses = []
+
+    for course_available in course_list:
+        course_code = course_available[0]
+        course_type_code = course_code[:3]
+        if course_type_code == course_type:
+            available_courses.append(course_available)
+
+    return available_courses
+
+
+
+def sort_by_course_level_num(course):
+    """
+    Function that returns the course level number
+
+    Example: course = ACC3500-01, returns 5
+    """
+    course_code = course[0]
+    course_level_num = course_code[4]
+    return course_level_num
+
+
+
+def course_level_list(course_level, course_list):
+    """
+    Take a list of all courses being offered and the desired course level
+    Returns a list of courses that are available for the given course level
+
+    course_level (str): Advanced Liberal Arts Elective, Advanced Electives, or Free Electives
+    """
+    advanced_liberal_arts = []
+    advanced_electives = []
+    free_electives = []
+    for course_available in course_list:
+        course_code = course_available[0]
+        course_level_num = course_code[4]
+        if course_level_num == '6':
+            advanced_liberal_arts.append(course_available)
+            advanced_electives.append(course_available)
+            free_electives.append(course_available)
+        elif course_level_num == '5':
+            advanced_electives.append(course_available)
+            free_electives.append(course_available)
+        elif course_level_num == '1' or course_level_num == '2':
+            free_electives.append(course_available)
+        else:
+            pass
+    if course_level == 'Advanced Liberal Arts Electives':
+        return advanced_liberal_arts
+    elif course_level == 'Advanced Electives':
+        advanced_electives_sorted = sorted(advanced_electives, key=sort_by_course_level_num)
+        return advanced_electives_sorted
+    else:
+        free_electives_sorted = sorted(free_electives, key=sort_by_course_level_num)
+        return free_electives_sorted
+    
+
 
 
 # def main():
+
 #     url = generate_url('Undergraduate','Fall', 2021)
 
-#     # with open('data/course_listings.csv', 'w', encoding='utf-8', newline='') as f:
-#         # writer = csv.writer(f)
+#     html = download_page(url).read()
+#     # print(html)
 
-#         # fields = ('Course No.', 'Title', 'Day(s)', 'Time', 'Professor')
-#         # writer.writerow(fields)
+#     course_list = parse_html(html)
+#     # print(course_list)
 
-#         # html = download_page(url)
-#         # courses = parse_html(html)
-#         # writer.writerows(courses)
+#     concentration_courses = concentration_course_list("Accounting", course_list)
+#     # pprint.pprint(concentration_courses)
 
+#     available_courses = course_type_list("LVA", course_list)
+#     # pprint.pprint(available_courses)
+
+#     electives_available = course_level_list("Free Electives", course_list)
+#     # pprint.pprint(electives_available)
 
 # if __name__ == '__main__':
 #     main()
