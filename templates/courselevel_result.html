@@ -9,20 +9,22 @@
   <body>
     <div class="topnav">
         <a class="active" href="/">Home</a>
-        <a href="/coursefinder">Course Finder</a>
+        <a href="/concentrationcoursefinder">Concentration Course Finder</a>
+        <a href="/coursetypefinder">Course Type Finder</a>
+        <a href="/courselevelfinder">Course Level Finder</a>
       </div>
     <div class="container">
     <h1 style="font-family:'Arial';">Here are your results!</h1>
     </div>
     <p>
-        <b style="font-family:'Arial';">The courses being offered for {{program}}'s during {{term}} of {{year}} concentrating in {{concentration}} are:</b>
+        <b style="font-family:'Arial';">The {{course_level} courses being offered for {{program}}'s during {{term}} of {{year}} are:</b>
     </p>
     <br>
     <p>
       <u><b style="font-family:'Arial';">[Course No., Course Title, Day(s), Time, Professor]</b></u>
     </p>
     <p style="font-family:'Arial';">
-        {% for class in concentration_courses %}
+        {% for class in electives_courses %}
             <p>{{ class }} </p>
         {% endfor %}
     </p>

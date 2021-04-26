@@ -123,7 +123,7 @@ def course_level_list(course_level, course_list):
     Take a list of all courses being offered and the desired course level
     Returns a list of courses that are available for the given course level
 
-    course_level (str): Advanced Liberal Arts Elective, Advanced Electives, or Free Electives
+    course_level (str): Advanced Liberal Arts Electives, Advanced Electives, or Free Electives
     """
     advanced_liberal_arts = []
     advanced_electives = []
@@ -167,7 +167,7 @@ def course_level_list(course_level, course_list):
 #     concentration_courses = concentration_course_list("Accounting", course_list)
 #     # pprint.pprint(concentration_courses)
 
-#     available_courses = course_type_list("LVA", course_list)
+#     available_courses = course_type_list("HSS", course_list)
 #     # pprint.pprint(available_courses)
 
 #     electives_available = course_level_list("Free Electives", course_list)

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Available Courses</title>
+  </head>
+
+  <body>
+    <div class="topnav">
+        <a class="active" href="/">Home</a>
+        <a href="/concentrationcoursefinder">Concentration Course Finder</a>
+        <a href="/coursetypefinder">Course Type Finder</a>
+        <a href="/courselevelfinder">Course Level Finder</a>
+      </div>
+    <div class="container">
+    <h1 style="font-family:'Arial';">Here are your results!</h1>
+    </div>
+    <p>
+        <b style="font-family:'Arial';">The courses being offered for {{program}}'s during {{term}} of {{year}} concentrating in {{concentration}} are:</b>
+    </p>
+    <br>
+    <p>
+      <u><b style="font-family:'Arial';">[Course No., Course Title, Day(s), Time, Professor]</b></u>
+    </p>
+    <p style="font-family:'Arial';">
+        {% for class in concentration_courses %}
+            <p>{{ class }} </p>
+        {% endfor %}
+    </p>
+  </body>
+</html>

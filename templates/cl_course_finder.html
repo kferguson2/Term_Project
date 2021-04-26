@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Babson Course Finder</title>
+</head>
+    <body>
+        <div class="topnav">
+            <a class="active" href="/">Home</a>
+            <a href="/concentrationcoursefinder">Concentration Course Finder</a>
+            <a href="/coursetypefinder">Course Type Finder</a>
+            <a href="/courselevelfinder">Course Level Finder</a>
+        </div>
+        <div class="container">
+        <h1 style="font-family:'Arial';">Course Level Finder</h1>
+        </div>
+        <form method="POST" name='information' style="font-family:'Arial';">
+            {% if error %} 
+            <p style="color: darkred;"><b>Error: All of the information below is required. Please select an answer for every section.</b></p>
+            {% endif %}
+            <p> Please enter the following information:</p>
+            <label for="program">Program:</label><br>
+            <select name="program" id="program">
+                <option value="">- Please Select -</option>
+                <option value="Undergraduate">Undergraduate</option>
+                <option value="Graduate">Graduate</option>
+            </select><br>
+            <br>
+            <label for="term">Semester:</label><br>
+            <select name="term" id="term">
+                <option value="">- Please Select -</option>
+                <option value="Fall">Fall</option>
+                <option value="Spring">Spring</option>
+                <option value="Winter">Winter</option>
+                <option value="Summer">Summer</option>
+            </select><br>
+            <br>
+            <label for="year">Year:</label><br>
+            <input type="number" name="year" min="2021" step="1" value="2021"><br>
+            <br>
+            <label for="course_level">Course Level:</label><br>
+            <select name="course_level" id="course_level">
+                <option value="">- Please Select -</option>
+                <option value="Advanced Liberal Arts Electives">Advanced Liberal Arts Electives</option>
+                <option value="Advanced Electives">Advanced Electives</option>
+                <option value="Free Electives">Free Electives</option>
+            </select>
+            <p>
+                <input type="submit" value="Find Courses"/>
+            </p>
+        </form>
+    </body>
+</html>

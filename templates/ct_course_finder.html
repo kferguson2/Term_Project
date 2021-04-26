@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Babson Course Finder</title>
+</head>
+    <body>
+        <div class="topnav">
+            <a class="active" href="/">Home</a>
+            <a href="/concentrationcoursefinder">Concentration Course Finder</a>
+            <a href="/coursetypefinder">Course Type Finder</a>
+            <a href="/courselevelfinder">Course Level Finder</a>
+        </div>
+        <div class="container">
+        <h1 style="font-family:'Arial';">Course Type Finder</h1>
+        </div>
+        <form method="POST" name='information' style="font-family:'Arial';">
+            {% if error %} 
+            <p style="color: darkred;"><b>Error: All of the information below is required. Please select an answer for every section.</b></p>
+            {% endif %}
+            <p> Please enter the following information:</p>
+            <label for="program">Program:</label><br>
+            <select name="program" id="program">
+                <option value="">- Please Select -</option>
+                <option value="Undergraduate">Undergraduate</option>
+                <option value="Graduate">Graduate</option>
+            </select><br>
+            <br>
+            <label for="term">Semester:</label><br>
+            <select name="term" id="term">
+                <option value="">- Please Select -</option>
+                <option value="Fall">Fall</option>
+                <option value="Spring">Spring</option>
+                <option value="Winter">Winter</option>
+                <option value="Summer">Summer</option>
+            </select><br>
+            <br>
+            <label for="year">Year:</label><br>
+            <input type="number" name="year" min="2021" step="1" value="2021"><br>
+            <br>
+            <label for="course_type">Course Type:</label><br>
+            <select name="course_type" id="course_type">
+                <option value="">- Please Select -</option>
+                <option value="ACC">ACC</option>
+                <option value="ANT">ANT</option>
+                <option value="AQM">AQM</option>
+                <option value="ARB">ARB</option>
+                <option value="ART">ART</option>
+                <option value="ASM">ASM</option>
+                <option value="CHN">CHN</option>
+                <option value="COM">COM</option>
+                <option value="CVA">CVA</option>
+                <option value="ECN">ECN</option>
+                <option value="ENG">ENG</option>
+                <option value="ENV">ENV</option>
+                <option value="EPS">EPS</option>
+                <option value="FCI">FCI</option>
+                <option value="FIN">FIN</option>
+                <option value="FME">FME</option>
+                <option value="FRN">FRN</option>
+                <option value="FYS">FYS</option>
+                <option value="GDR">GDR</option>
+                <option value="HIS">HIS</option>
+                <option value="HSS">HSS</option>
+                <option value="HUM">HUM</option>
+                <option value="JPN">JPN</option>
+                <option value="LAW">LAW</option>
+                <option value="LIT">LIT</option>
+                <option value="LVA">LVA</option>
+                <option value="MKT">MKT</option>
+                <option value="MOB">MOB</option>
+                <option value="NST">NST</option>
+                <option value="OIM">OIM</option>
+                <option value="QTM">QTM</option>
+                <option value="SCN">SCN</option>
+                <option value="SME">SME</option>
+                <option value="SOC">SOC</option>
+                <option value="SPN">SPN</option>
+                <option value="TAX">TAX</option>
+                <option value="WRT">WRT</option>
+            </select>
+            <p>
+                <input type="submit" value="Find Courses"/>
+            </p>
+        </form>
+    </body>
+</html>
+
