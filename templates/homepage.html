@@ -17,10 +17,19 @@
     <h1 style="font-family:'Arial';">Hello! We are so excited to help you find courses!</h1>
     </div>
     <p style="font-family:'Arial';">
-        As fellow Babson students, we know how annoying and difficult it can be to navigate across all the Babson website to
-        determine what courses you need to take to fulfill your concentration requirement. <br> 
-        So, we have created this tool that will help you find courses that are being offered during a semester that will fulfill your concentration requirements! <br>
-        Please navigate to the Course Finder tab to see our tool in action and find the courses you want!
+        As fellow Babson students, we know how time-consuming and difficult it can be to navigate across all the Babson websites to
+        determine what courses you need to take to fulfill your requirements. <br> 
+        So we decided to create this tool that will help you find courses that are being offered during a specified semester! <br>
+        <br>
+        There are three different search options available for your use: <br>
     </p>
+    <h3 style="font-family:'Arial';"><a href="{{ url_for('conc_course_list') }}">1. Concentration Course Finder</a></h3>
+    <p style="font-family:'Arial';">The Concentration Course Finder will help you find courses that count towards your concentration requirments.</p>
+    <h3 style="font-family:'Arial';"><a href="{{ url_for('ct_course_list') }}">2. Course Type Finder</a></h3>
+    <p style="font-family:'Arial';">The Course Type Finder will allow you to find courses of a designated type, such as LVA, CVA, or HSS courses.</p>
+    <h3 style="font-family:'Arial';"><a href="{{ url_for('cl_course_list') }}">3. Course Level Finder</a></h3>
+    <p style="font-family:'Arial';">The Course Level Finder will help you find courses that will count towards your Advanced Liberal Arts Electives, Advanced Electives, or Free Electives credits.</p>
+    <br>
+    <h4 style="font-family:'Arial';">Please navigate to your desired Course Finder to begin finding classes that are right for you!</h4>
 </body>
 </html>

@@ -162,7 +162,7 @@ def main():
     # print(html)
 
     course_list = parse_html(html)
-    # print(course_list)
+    print(course_list)
 
     concentration_courses = concentration_course_list("Accounting", course_list)
     # pprint.pprint(concentration_courses)
