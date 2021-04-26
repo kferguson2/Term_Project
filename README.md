@@ -1,4 +1,4 @@
-## Welcome to Kristina and Alex's Software Design Project!
+## **Welcome to Kristina and Alex's Software Design Project!**
 
 You can use the [editor on GitHub](https://github.com/kferguson2/Term_Project/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
 
