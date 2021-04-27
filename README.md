@@ -1,7 +1,5 @@
 ## **Welcome to Kristina and Alex's Software Design Project!**
 
-You can use the [editor on GitHub](https://github.com/kferguson2/Term_Project/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
-
 ### About Us
 
 Hi! Our names are Kristina Ferguson and Alexander Rosemond and we are juniors at Babson College. During our junior year we took the class Problem Solving and Software Design and were able to learn all about coding in Python. We learned a lot in this class and were able to accumulate all that we had learned throughout the semester to generate this final project. We hope that you enjoy learning more about the work we did as much as we enjoyed creating it!
