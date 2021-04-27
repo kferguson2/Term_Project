@@ -37,15 +37,11 @@ def parse_html(concentrations_list, html):
     """
     concentrations_dict = dict()
     for i in concentrations_list:
-        # print(i)
         str_i = str(i)
-        # print(str_i)
         clean_i = str_i.replace(",", "")
         clean_i = clean_i.replace(" ", "-")
         clean_i = clean_i.lower()
-        # print(clean_i)
         usuable_url = f"{DOWNLOAD_URL}{clean_i}"
-        # print(usuable_url)
         soup = BeautifulSoup(download_page(usuable_url), features="html.parser")
         # print(soup.prettify())
         concentration_table = soup.find('div', attrs={"class": "u-margin-bottom--30"})
@@ -90,7 +86,6 @@ concentrations_dict['Computational and Mathematical Finance'].extend(extra_cmf)
 concentrations_dict['Computational and Mathematical Finance'].remove('ECN3620')
 concentrations_dict['Computational and Mathematical Finance'].remove('QTM3612')
 econ = concentrations_dict['Economics'][:15]
-# print(econ)
 concentrations_dict['Economics'] = econ
 
 extra_entre = ['EPS3502', 'EPS3503', 'EPS3508', 'EPS420', 'EPS3509', 'EPS3531', 'EPS4530', 'EPS4534']
@@ -146,9 +141,6 @@ concentrations_dict['Strategic Management'].extend(extra_strat)
 
 extra_ted = ['EPS3501', 'EPS3503', 'EPS3504', 'EPS3513', 'EPS3531', 'EPS3537', 'EPS3541', 'EPS4515', 'EPS4523', 'OIM3635']
 concentrations_dict['Technology, Entrepreneurship, and Design'].extend(extra_ted)
-
-# pprint.pprint(concentrations_dict['Technology, Entrepreneurship, and Design'])
-#identity and diversity
 
 
 
