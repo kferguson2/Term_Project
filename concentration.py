@@ -61,14 +61,14 @@ def parse_html(concentrations_list, html):
 
 
 
-def main():
-    import pprint
-    url = DOWNLOAD_URL
-    # print(url)
-    # print(parse_html(download_page(url)))
-    concentrations_list = parse_html_concentration_list(download_page(DOWNLOAD_URL))
-    # pprint.pprint(concentrations_list)
-    # print(concentrations_list[2])
+# def main():
+#     import pprint
+#     url = DOWNLOAD_URL
+#     # print(url)
+#     # print(parse_html(download_page(url)))
+#     concentrations_list = parse_html_concentration_list(download_page(DOWNLOAD_URL))
+#     # pprint.pprint(concentrations_list)
+#     # print(concentrations_list[2])
 
 url = DOWNLOAD_URL
 concentrations_list = parse_html_concentration_list(download_page(DOWNLOAD_URL))
@@ -142,5 +142,5 @@ concentrations_dict['Technology, Entrepreneurship, and Design'].extend(extra_ted
 
 
 
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+#     main()
